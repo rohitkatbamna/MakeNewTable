@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#000000" />
+		<link rel="stylesheet" type="text/css" href="./table.css" />
+		<title>Table Generator</title>
+	</head>
+	<body>
+		<h2 id="nothing_here"></h2>
+		<table>
+			<thead>
+				<tr id="TableHeaderHere"></tr>
+			</thead>
+			<tbody id="TableBodyHere"></tbody>
+		</table>
+	</body>
+	<script>
+		const fetchedData = {
+			success: [
+				{
+					feeInstalmentCode: "2021/PG/MBA-JAGSOM/2021 fee period/1",
+					fee: "200000",
+					url: "https://www.google.com/",
+				},
+				{
+					feeInstalmentCode: "2021/PG/MBA-JAGSOM/2021 fee period/2",
+					fee: "200000",
+					url: "https://stackoverflow.com/",
+				},
+				{
+					feeInstalmentCode: "2021/PG/MBA-JAGSOM/2021 fee period/3",
+					fee: "200000",
+					url: "https://winterbe.com/posts/2009/08/14/query-several-columns-with-hibernate/",
+				},
+				{
+					feeInstalmentCode: "2021/PG/MBA-JAGSOM/2022 Fees Period/4",
+					fee: "200000",
+					url: "https://outlook.office.com/mail/",
+				},
+			],
+		};
+		//checking backend fetch is success
+		console.log(fetchedData.success);
+		try {
+			if (fetchedData.success.length > 0) {
+				let theadtr = document.getElementById("TableHeaderHere"); // get Table Header
+				// this is for appending header data to table thead
+				for (let key of Object.keys(fetchedData.success[0])) {
+					let tdheader = document.createElement("td"); // create new td element
+					let tdDataheader = document.createTextNode(key); // create text node for td
+					tdheader.appendChild(tdDataheader); // append child text to td
+					theadtr.appendChild(tdheader); // append td to thead tr
+				}
+				// this is for appending body data to table body
+				let tbody = document.getElementById("TableBodyHere");
+				for (let tableObject of fetchedData.success) {
+					let trbody = document.createElement("tr"); //create tr element
+					tbody.appendChild(trbody); //add tr element in tbody
+					for (let tablevalues of Object.values(tableObject)) {
+						let tdbody = document.createElement("td"); // create td element
+						let tdDatabody = document.createTextNode(tablevalues); // create text node
+						tdbody.appendChild(tdDatabody); // add text to td
+						trbody.appendChild(tdbody); // add td to tr
+					}
+				}
+			}
+		} catch {}
+	</script>
+</html>
